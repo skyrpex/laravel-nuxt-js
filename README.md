@@ -8,7 +8,7 @@ This package allows you to build a SPA with Laravel and Nuxt.
 npm install laravel-nuxt
 ```
 
-> **Attention!** You must install the [laravel-nuxt](skyrpex/laravel-nuxt) PHP package first.
+> **Attention!** You must install the [laravel-nuxt](https://github.com/skyrpex/laravel-nuxt) PHP package first.
 
 ## Getting Started
 
