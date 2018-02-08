@@ -2,8 +2,8 @@
 const spawn = require("cross-spawn");
 const program = require("commander");
 const which = require("npm-which")(__dirname);
+const utils = require("../utils");
 const pkg = require("../package.json");
-const { pipeStdio, exitOnClose } = require("../utils");
 
 program
   .version(pkg.version)
@@ -25,9 +25,17 @@ program
 const NUXT_PORT = parseInt(program.port);
 const LARAVEL_PORT = NUXT_PORT + 1;
 
+utils.validateConfig();
+
 const nuxt = spawn(
   which.sync("nuxt"),
-  ["dev", "--spa", `--port=${NUXT_PORT}`, `--hostname=${program.hostname}`],
+  [
+    "dev",
+    `-c=${utils.configPath}`,
+    "--spa",
+    `--port=${NUXT_PORT}`,
+    `--hostname=${program.hostname}`,
+  ],
   {
     env: {
       ...process.env,
@@ -35,8 +43,8 @@ const nuxt = spawn(
     },
   },
 );
-pipeStdio(nuxt, "nuxt");
-exitOnClose(nuxt);
+utils.pipeStdio(nuxt, "nuxt");
+utils.exitOnClose(nuxt);
 
 const laravel = spawn(
   "php",
@@ -48,5 +56,5 @@ const laravel = spawn(
     },
   },
 );
-pipeStdio(laravel, "laravel");
-exitOnClose(nuxt);
+utils.pipeStdio(laravel, "laravel");
+utils.exitOnClose(nuxt);

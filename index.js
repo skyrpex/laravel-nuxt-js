@@ -1,7 +1,13 @@
 const _ = require("lodash");
+const utils = require("./utils");
 
-module.exports = (options = {}) =>
-  _.defaultsDeep(options, {
+module.exports = (options = {}) => {
+  Object.defineProperty(options, utils.validationSymbol, {
+    value: true,
+    writable: false,
+  });
+
+  return _.defaultsDeep(options, {
     mode: "spa",
     srcDir: "resources/nuxt",
     generate: {
@@ -23,3 +29,4 @@ module.exports = (options = {}) =>
         ]
       : null,
   });
+};

@@ -2,6 +2,7 @@
 const program = require("commander");
 const spawn = require("cross-spawn");
 const which = require("npm-which")(__dirname);
+const utils = require("../utils");
 const pkg = require("../package.json");
 
 program
@@ -13,9 +14,11 @@ program
   )
   .parse(process.argv);
 
+utils.validateConfig();
+
 const build = spawn.sync(
   which.sync("nuxt"),
-  ["build", "--spa", program.analyze ? "-a" : ""],
+  ["build", `-c=${utils.configPath}`, "--spa", program.analyze ? "-a" : ""],
   {
     stdio: "inherit",
   },
