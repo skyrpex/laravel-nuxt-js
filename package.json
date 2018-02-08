@@ -1,6 +1,6 @@
 {
     "name": "laravel-nuxt",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Build a SPA with Laravel and Nuxt",
     "bin": {
         "laravel-nuxt": "./bin/laravel-nuxt.js",
@@ -20,14 +20,18 @@
         "nuxt": "^1.3.0"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/skyrpex/laravel-nuxt-js.git"
+        "type": "git",
+        "url": "git+https://github.com/skyrpex/laravel-nuxt-js.git"
     },
-    "keywords": ["nuxt", "vue", "laravel"],
+    "keywords": [
+        "nuxt",
+        "vue",
+        "laravel"
+    ],
     "author": "Cristian Pallarés <cristian@pallares.io>",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/skyrpex/laravel-nuxt-js/issues"
+        "url": "https://github.com/skyrpex/laravel-nuxt-js/issues"
     },
     "homepage": "https://github.com/skyrpex/laravel-nuxt-js#readme"
 }
