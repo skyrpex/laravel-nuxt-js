@@ -26,7 +26,8 @@
     "keywords": [
         "nuxt",
         "vue",
-        "laravel"
+        "laravel",
+        "spa"
     ],
     "author": "Cristian Pallarés <cristian@pallares.io>",
     "license": "MIT",
