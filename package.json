@@ -1,7 +1,6 @@
 {
     "name": "laravel-nuxt",
     "version": "0.0.0",
-    "private": true,
     "bin": {
         "laravel-nuxt": "./bin/laravel-nuxt.js",
         "laravel-nuxt-dev": "./bin/laravel-nuxt-dev.js",
