@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "laravel-nuxt dev",
+        "build": "laravel-nuxt build"
+    }
+}
