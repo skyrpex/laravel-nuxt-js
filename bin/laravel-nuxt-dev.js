@@ -22,7 +22,7 @@ program
   )
   .parse(process.argv);
 
-const NUXT_PORT = program.port;
+const NUXT_PORT = parseInt(program.port);
 const LARAVEL_PORT = NUXT_PORT + 1;
 
 const nuxt = spawn(
