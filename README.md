@@ -12,7 +12,7 @@ npm install laravel-nuxt
 
 ## Getting Started
 
-> Optionally, you will want to [get rid of the default Laravel scaffolding](### Getting rid of the default Laravel scaffolding).
+> Optionally, you will want to [get rid of the default Laravel scaffolding](#getting-rid-of-the-default-laravel-scaffolding).
 
 Add a script to your `package.json` like this:
 
