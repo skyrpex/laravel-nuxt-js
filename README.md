@@ -1,6 +1,6 @@
 # Laravel Nuxt JS
 
-This package allows you to build a SPA with Laravel and Nuxt.
+This package allows you to build a SPA with [Laravel](https://laravel.com/) and [Nuxt](https://nuxtjs.org/).
 
 ## Installation
 
