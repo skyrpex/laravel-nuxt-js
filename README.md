@@ -89,6 +89,8 @@ Launch `webpack-bundle-analyzer` to optimize your bundles.
 
 ### Getting rid of the default Laravel scaffolding
 
+The default Laravel installation comes with some frontend files which are not needed anymore.
+
 You can remove the following files and directories:
 
 * `resources/assets/`
