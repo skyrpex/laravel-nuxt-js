@@ -8,6 +8,10 @@
         "laravel-nuxt-build": "./bin/laravel-nuxt-build.js"
     },
     "main": "./index.js",
+    "scripts": {
+        "test": "npm run lint",
+        "lint": "eslint ."
+    },
     "dependencies": {
         "@nuxtjs/axios": "^5.0.0",
         "@nuxtjs/proxy": "^1.1.4",
