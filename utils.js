@@ -35,7 +35,7 @@ module.exports.validateConfig = () => {
 
   const config = require(configPath);
 
-  if (!Object.hasOwnProperty(config)) {
+  if (!config.hasOwnProperty(validationSymbol)) {
     console.error(
       `${chalk.bgRed("ERROR")}: You need to wrap your config with ${chalk.gray(
         "laravelNuxt",
