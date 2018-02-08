@@ -9,7 +9,7 @@
     },
     "main": "./index.js",
     "scripts": {
-        "test": "ava",
+        "test": "npm run lint && ava",
         "watch": "ava --watch",
         "lint": "eslint ."
     },
