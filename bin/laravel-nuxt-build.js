@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const path = require("path");
-const shell = require("shelljs");
 const program = require("commander");
 const spawn = require("cross-spawn");
 const which = require("npm-which")(__dirname);
