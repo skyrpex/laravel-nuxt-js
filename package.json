@@ -45,6 +45,7 @@
         "eslint": "^4.17.0",
         "eslint-config-skyrpex": "^1.0.0",
         "eslint-plugin-ava": "^4.5.0",
+        "glob": "^7.1.2",
         "tmp": "0.0.33"
     },
     "ava": {

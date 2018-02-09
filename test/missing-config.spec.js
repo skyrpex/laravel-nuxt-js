@@ -5,7 +5,9 @@ const fs = require("fs-extra");
 const spawn = require("cross-spawn");
 const { installSelf } = require("./utils");
 
-const baseDir = tmp.dirSync().name;
+const baseDir = tmp.dirSync({
+  unsafeCleanup: true,
+}).name;
 fs.copySync(path.resolve(__dirname, "stubs/missing_config"), baseDir);
 installSelf(baseDir);
 
