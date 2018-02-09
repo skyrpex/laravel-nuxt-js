@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
 
-const validationSymbol = "_uses_laravel_nuxt_";
+const validationSymbol = "__laravel_nuxt__";
 
 const configPath = path.resolve(process.cwd(), "nuxt.config.js");
 
@@ -44,3 +44,5 @@ module.exports.validateConfig = () => {
     process.exit(1);
   }
 };
+
+module.exports.devRenderUrl = validationSymbol;
