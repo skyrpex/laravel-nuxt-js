@@ -67,7 +67,7 @@ Go to http://localhost:8000.
 laravel-nuxt dev
 ```
 
-Starts both Nuxt and Laravel artisan dev servers in development mode (hot-code reloading, error reporting, etc).
+Starts both Nuxt and Laravel artisan servers in development mode (hot-code reloading, error reporting, etc).
 
 ### Production
 
@@ -76,6 +76,8 @@ laravel-nuxt build
 ```
 
 Compiles the application for production deployment.
+
+This command will output the compiled assets in `public/_nuxt`.
 
 ### Analysis
 
