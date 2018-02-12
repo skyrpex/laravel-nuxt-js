@@ -1,13 +1,11 @@
 const path = require("path");
 const fs = require("fs-extra");
-const utils = require("./utils");
 
 module.exports = function() {
   if (this.options.dev) {
     this.extendRoutes((routes, resolve) => {
       routes.push({
-        name: "__laravel_nuxt__",
-        path: `/${utils.devRenderUrl}`,
+        path: process.env.RENDER_PATH,
         component: resolve(this.options.srcDir, "pages/index.vue"),
       });
     });

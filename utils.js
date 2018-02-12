@@ -44,5 +44,3 @@ module.exports.validateConfig = () => {
     process.exit(1);
   }
 };
-
-module.exports.devRenderUrl = validationSymbol;

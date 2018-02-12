@@ -21,7 +21,7 @@ module.exports = (options = {}) => {
     proxy: process.env.LARAVEL_URL
       ? [
           [
-            ["**/*", `!/${utils.devRenderUrl}`],
+            ["**/*", `!${process.env.RENDER_PATH}`],
             {
               target: process.env.LARAVEL_URL,
             },

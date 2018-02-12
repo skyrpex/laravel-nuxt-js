@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const { URL } = require("url");
 const spawn = require("cross-spawn");
 const program = require("commander");
 const which = require("npm-which")(__dirname);
@@ -20,10 +21,20 @@ program
     "Hostname on which to start the application",
     "127.0.0.1",
   )
+  .option(
+    "--render-path [path]",
+    "URL path used to render the SPA",
+    "/__laravel_nuxt__",
+  )
   .parse(process.argv);
 
 const NUXT_PORT = parseInt(program.port);
 const LARAVEL_PORT = NUXT_PORT + 1;
+
+const renderUrl = new URL(
+  program.renderPath,
+  `http://${program.hostname}:${NUXT_PORT}`,
+);
 
 utils.validateConfig();
 
@@ -40,6 +51,7 @@ const nuxt = spawn(
     env: {
       ...process.env,
       LARAVEL_URL: `http://${program.hostname}:${LARAVEL_PORT}`,
+      RENDER_PATH: renderUrl.pathname,
     },
   },
 );
@@ -52,7 +64,7 @@ const laravel = spawn(
   {
     env: {
       ...process.env,
-      NUXT_URL: `http://${program.hostname}:${NUXT_PORT}/${utils.devRenderUrl}`,
+      NUXT_URL: renderUrl,
     },
   },
 );
