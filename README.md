@@ -1,5 +1,7 @@
 # Laravel Nuxt JS
 
+[![TravisCI Build status](https://travis-ci.org/skyrpex/laravel-nuxt.svg?branch=develop)](https://travis-ci.org/skyrpex/laravel-nuxt)
+
 This package allows you to build a SPA with [Laravel](https://laravel.com/) and [Nuxt](https://nuxtjs.org/).
 
 ## Installation
