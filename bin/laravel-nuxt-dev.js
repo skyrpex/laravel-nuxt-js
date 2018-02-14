@@ -3,7 +3,7 @@ const { URL } = require("url");
 const spawn = require("cross-spawn");
 const program = require("commander");
 const which = require("npm-which")(__dirname);
-const utils = require("../utils");
+const utils = require("../src/utils");
 const pkg = require("../package.json");
 
 program
