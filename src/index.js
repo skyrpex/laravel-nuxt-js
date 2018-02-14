@@ -7,26 +7,32 @@ module.exports = (options = {}) => {
     writable: false,
   });
 
-  return _.defaultsDeep(options, {
-    mode: "spa",
-    srcDir: "resources/nuxt",
-    generate: {
-      dir: "storage/app/nuxt",
-    },
-    modules: [require.resolve("./module"), "@nuxtjs/axios"],
-    axios: {
-      baseURL: "/",
-      proxy: process.env.LARAVEL_URL != null,
-    },
-    proxy: process.env.LARAVEL_URL
-      ? [
-          [
-            ["**/*", `!${process.env.RENDER_PATH}`],
-            {
-              target: process.env.LARAVEL_URL,
-            },
-          ],
-        ]
-      : null,
-  });
+  return _.flow(
+    options => _.defaultsDeep(options, {
+      srcDir: "resources/nuxt",
+      generate: {
+        dir: "storage/app/nuxt",
+      },
+      axios: {
+        baseURL: "/",
+      },
+    }),
+    options => _.merge(options, {
+      mode: "spa",
+      modules: [require.resolve("./module"), "@nuxtjs/axios"],
+      axios: {
+        proxy: process.env.LARAVEL_URL != null,
+      },
+      proxy: process.env.LARAVEL_URL
+        ? [
+            [
+              ["**/*", `!${process.env.RENDER_PATH}`],
+              {
+                target: process.env.LARAVEL_URL,
+              },
+            ],
+          ]
+        : null,
+    }),
+  )(options);
 };
