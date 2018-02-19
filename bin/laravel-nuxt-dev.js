@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const { URL } = require("url");
+const ON_DEATH = require("death");
 const spawn = require("cross-spawn");
 const program = require("commander");
 const which = require("npm-which")(__dirname);
@@ -70,3 +71,8 @@ const laravel = spawn(
 );
 utils.pipeStdio(laravel, "laravel");
 utils.exitOnClose(nuxt);
+
+ON_DEATH(() => {
+  nuxt.kill();
+  laravel.kill();
+});
