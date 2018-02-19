@@ -18,7 +18,9 @@ module.exports.pipeStdio = (child, name) => {
 };
 
 module.exports.exitOnClose = child => {
-  child.on("close", ({ code }) => process.exit(code));
+  child.on("close", code => {
+    process.exit(code);
+  });
 };
 
 module.exports.validationSymbol = validationSymbol;
