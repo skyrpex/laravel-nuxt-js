@@ -16,7 +16,6 @@ module.exports = function() {
     return;
   }
 
-
   this.nuxt.hook("generate:done", async () => {
     const { html } = await this.nuxt.renderer.renderRoute("/", { url: "/" });
 
