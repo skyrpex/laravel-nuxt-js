@@ -62,6 +62,7 @@ utils.exitOnClose(nuxt);
 const laravel = spawn(
   "php",
   ["artisan", "serve", `--host=${program.hostname}`, `--port=${LARAVEL_PORT}`],
+  // ["-S", `${program.hostname}:${LARAVEL_PORT}`, "server.php"],
   {
     env: {
       ...process.env,
@@ -70,7 +71,7 @@ const laravel = spawn(
   },
 );
 utils.pipeStdio(laravel, "laravel");
-utils.exitOnClose(nuxt);
+utils.exitOnClose(laravel);
 
 ON_DEATH(() => {
   nuxt.kill();
