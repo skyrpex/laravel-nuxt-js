@@ -2,6 +2,10 @@ const path = require("path");
 const fs = require("fs-extra");
 
 module.exports = function() {
+  const publicPath = path.resolve("public" + this.options.build.publicPath);
+
+  fs.removeSync(publicPath);
+
   if (this.options.dev) {
     this.extendRoutes((routes, resolve) => {
       routes.push({
@@ -12,9 +16,6 @@ module.exports = function() {
     return;
   }
 
-  const publicPath = path.resolve("public" + this.options.build.publicPath);
-
-  fs.removeSync(publicPath);
 
   this.nuxt.hook("generate:done", async () => {
     const { html } = await this.nuxt.renderer.renderRoute("/", { url: "/" });
