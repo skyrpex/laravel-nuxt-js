@@ -46,3 +46,7 @@ module.exports.validateConfig = () => {
     process.exit(1);
   }
 };
+
+exports.isUrl = url => {
+  return url.indexOf("http") === 0 || url.indexOf("//") === 0;
+};
