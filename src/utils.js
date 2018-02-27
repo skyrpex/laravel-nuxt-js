@@ -2,12 +2,30 @@ const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
 
+// This string identifier will be used to ensure that
+// the Nuxt config is wrapped by our higher-level function.
 const validationSymbol = "__laravel_nuxt__";
+module.exports.validationSymbol = validationSymbol;
 
+// The path were the Nuxt config should be.
 const configPath = path.resolve(process.cwd(), "nuxt.config.js");
+module.exports.configPath = configPath;
 
+/**
+ * Transform the given data into a clean string.
+ *
+ * @param {*} data
+ * @return {string}
+ */
 const normalize = data => data.toString().trim();
 
+/**
+ * Print all of the data of the given child process to the console.
+ *
+ * @param {ChildProcess} child
+ * @param {string} name
+ * @return {void}
+ */
 module.exports.pipeStdio = (child, name) => {
   child.stdout.on("data", data =>
     console.log(`${chalk.gray(`[${name}]`)} ${normalize(data)}`),
@@ -17,16 +35,21 @@ module.exports.pipeStdio = (child, name) => {
   );
 };
 
+/**
+ * Close the main process if the child process exits.
+ *
+ * @param {ChildProcess} child
+ * @return {void}
+ */
 module.exports.exitOnClose = child => {
   child.on("close", code => {
     process.exit(code);
   });
 };
 
-module.exports.validationSymbol = validationSymbol;
-
-module.exports.configPath = configPath;
-
+/**
+ * Print an error and stop the process if the Nuxt config is not valid.
+ */
 module.exports.validateConfig = () => {
   if (!fs.existsSync(configPath)) {
     console.error(
@@ -47,6 +70,11 @@ module.exports.validateConfig = () => {
   }
 };
 
+/**
+ * Check wether the given string is an URL or not.
+ *
+ * @param {string} url
+ */
 exports.isUrl = url => {
   return url.indexOf("http") === 0 || url.indexOf("//") === 0;
 };

@@ -14,6 +14,7 @@ program
   )
   .parse(process.argv);
 
+// Stop the process if the config is not OK.
 utils.validateConfig();
 
 const build = spawn.sync(

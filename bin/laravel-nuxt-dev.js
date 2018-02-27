@@ -29,14 +29,18 @@ program
   )
   .parse(process.argv);
 
+// TODO Allow passing both ports.
 const NUXT_PORT = parseInt(program.port);
 const LARAVEL_PORT = NUXT_PORT + 1;
 
+// The URL that will actually render the SPA HTML
+// without proxying to the Laravel backend.
 const renderUrl = new URL(
   program.renderPath,
   `http://${program.hostname}:${NUXT_PORT}`,
 );
 
+// Stop the process if the config is not OK.
 utils.validateConfig();
 
 const nuxt = spawn(
@@ -51,7 +55,9 @@ const nuxt = spawn(
   {
     env: {
       ...process.env,
+      // All of the requests will be proxied to Laravel...
       LARAVEL_URL: `http://${program.hostname}:${LARAVEL_PORT}`,
+      // ...except for this one, which will actually render.
       RENDER_PATH: renderUrl.pathname,
     },
   },
@@ -66,6 +72,8 @@ const laravel = spawn(
   {
     env: {
       ...process.env,
+      // The Laravel's NuxtController will
+      // fetch the SPA's HTML from this URL.
       NUXT_URL: renderUrl,
     },
   },
@@ -73,6 +81,7 @@ const laravel = spawn(
 utils.pipeStdio(laravel, "laravel");
 utils.exitOnClose(laravel);
 
+// Ensure that both child processes are killed at the end.
 ON_DEATH(() => {
   nuxt.kill();
   laravel.kill();
