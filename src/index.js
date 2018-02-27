@@ -10,6 +10,11 @@ module.exports = (options = {}) => {
     writable: false,
   });
 
+  // The LARAVEL_URL env variable will be passed on
+  // by the laravel-nuxt binaries. If present, we
+  // can assume that dev mode is enabled.
+  const isDev = process.env.LARAVEL_URL != null;
+
   return _.flow(
     // Add sensible defaults to the options.
     // These may be changed without breaking the app.
@@ -29,9 +34,9 @@ module.exports = (options = {}) => {
         mode: "spa",
         modules: [require.resolve("./module"), "@nuxtjs/axios"],
         axios: {
-          proxy: process.env.LARAVEL_URL != null,
+          proxy: isDev,
         },
-        proxy: process.env.LARAVEL_URL
+        proxy: isDev
           ? [
               [
                 // We will proxy every single request to Laravel,
