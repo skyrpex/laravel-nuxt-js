@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const _ = require("lodash");
 const { URL } = require("url");
 const ON_DEATH = require("death");
 const spawn = require("cross-spawn");
@@ -27,6 +28,7 @@ program
     "URL path used to render the SPA",
     "/__laravel_nuxt__",
   )
+  .option("--color", "Force colored output")
   .parse(process.argv);
 
 // TODO Allow passing both ports.
@@ -45,13 +47,14 @@ utils.validateConfig();
 
 const nuxt = spawn(
   which.sync("nuxt"),
-  [
+  _.filter([
     "dev",
     `-c=${utils.configPath}`,
     "--spa",
     `--port=${NUXT_PORT}`,
     `--hostname=${program.hostname}`,
-  ],
+    program.color ? "--color" : null,
+  ]),
   {
     env: {
       ...process.env,
@@ -67,7 +70,13 @@ utils.exitOnClose(nuxt);
 
 const laravel = spawn(
   "php",
-  ["artisan", "serve", `--host=${program.hostname}`, `--port=${LARAVEL_PORT}`],
+  _.filter([
+    "artisan",
+    "serve",
+    `--host=${program.hostname}`,
+    `--port=${LARAVEL_PORT}`,
+    program.color ? "--ansi" : null,
+  ]),
   {
     env: {
       ...process.env,
