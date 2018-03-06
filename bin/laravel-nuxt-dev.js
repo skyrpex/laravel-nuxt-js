@@ -28,7 +28,7 @@ program
     "URL path used to render the SPA",
     "/__laravel_nuxt__",
   )
-  .option("--color", "Force colored output")
+  .option("--no-color", "Disable colored output")
   .parse(process.argv);
 
 // TODO Allow passing both ports.
