@@ -12,14 +12,6 @@ const configPath = path.resolve(process.cwd(), "nuxt.config.js");
 module.exports.configPath = configPath;
 
 /**
- * Transform the given data into a clean string.
- *
- * @param {*} data
- * @return {string}
- */
-const normalize = data => data.toString().trim();
-
-/**
  * Print all of the data of the given child process to the console.
  *
  * @param {ChildProcess} child
@@ -27,12 +19,15 @@ const normalize = data => data.toString().trim();
  * @return {void}
  */
 module.exports.pipeStdio = (child, name) => {
-  child.stdout.on("data", data =>
-    console.log(`${chalk.gray(`[${name}]`)} ${normalize(data)}`),
-  );
-  child.stderr.on("data", data =>
-    console.error(`${chalk.gray(`[${name}]`)} ${normalize(data)}`),
-  );
+  const out = data => {
+    const text = data.toString().trim();
+    if (text.length > 0) {
+      console.log(`${chalk.gray(`[${name}]`)} ${text}`);
+    }
+  };
+
+  child.stdout.on("data", out);
+  child.stderr.on("data", out);
 };
 
 /**
