@@ -20,6 +20,15 @@ module.exports = function() {
         html,
       );
 
+      // Render the JSON manifest (useful to render a custom HTML template).
+      fs.copySync(
+        path.resolve(
+          this.options.buildDir,
+          "dist/vue-ssr-client-manifest.json",
+        ),
+        path.resolve(this.options.generate.dir, "vue-ssr-client-manifest.json"),
+      );
+
       // Move the compiled assets to the public directory.
       fs.moveSync(
         path.resolve(
