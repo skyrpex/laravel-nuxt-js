@@ -1,34 +1,39 @@
 const path = require("path");
 const fs = require("fs-extra");
+const utils = require("./utils");
 
 module.exports = function() {
-  const publicPath = path.resolve("public" + this.options.build.publicPath);
-
-  fs.removeSync(publicPath);
-
   if (this.options.dev) {
+    // Add the special render route for dev mode.
     this.extendRoutes((routes, resolve) => {
       routes.push({
         path: process.env.RENDER_PATH,
         component: resolve(this.options.srcDir, "pages/index.vue"),
       });
     });
-    return;
+  } else {
+    this.nuxt.hook("generate:done", async () => {
+      // Render the HTML template.
+      const { html } = await this.nuxt.renderer.renderRoute("/", { url: "/" });
+      fs.writeFileSync(
+        path.resolve(this.options.generate.dir, "index.html"),
+        html,
+      );
+
+      // Move the compiled assets to the public directory.
+      fs.moveSync(
+        path.resolve(
+          this.options.generate.dir,
+          utils.normalizePublicPath(this.options.build.publicPath),
+        ),
+        path.resolve(
+          "public",
+          utils.normalizePublicPath(this.options.build.publicPath),
+        ),
+        {
+          overwrite: true,
+        },
+      );
+    });
   }
-
-  this.nuxt.hook("generate:done", async () => {
-    const { html } = await this.nuxt.renderer.renderRoute("/", { url: "/" });
-
-    fs.moveSync(
-      path.resolve(this.options.generate.dir + this.options.build.publicPath),
-      publicPath,
-      {
-        overwrite: true,
-      },
-    );
-
-    fs.writeFileSync(path.resolve(publicPath, "index.html"), html);
-
-    fs.removeSync(path.resolve(this.options.generate.dir));
-  });
 };

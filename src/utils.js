@@ -1,4 +1,5 @@
 const fs = require("fs");
+const _ = require("lodash");
 const path = require("path");
 const chalk = require("chalk");
 
@@ -70,6 +71,15 @@ module.exports.validateConfig = () => {
  *
  * @param {string} url
  */
-exports.isUrl = url => {
+const isUrl = url => {
   return url.indexOf("http") === 0 || url.indexOf("//") === 0;
+};
+
+/**
+ * Normalize the given public path, so it works with path.join.
+ *
+ * @param {string} publicPath
+ */
+exports.normalizePublicPath = publicPath => {
+  return isUrl(publicPath) ? "" : _.trim(publicPath, "/");
 };
