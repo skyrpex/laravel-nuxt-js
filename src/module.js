@@ -1,4 +1,5 @@
 const path = require("path");
+const chalk = require("chalk");
 const fs = require("fs-extra");
 const utils = require("./utils");
 
@@ -30,19 +31,36 @@ module.exports = function() {
       );
 
       // Move the compiled assets to the public directory.
-      fs.moveSync(
-        path.resolve(
-          this.options.generate.dir,
-          utils.normalizePublicPath(this.options.build.publicPath),
-        ),
-        path.resolve(
-          "public",
-          utils.normalizePublicPath(this.options.build.publicPath),
-        ),
-        {
-          overwrite: true,
-        },
-      );
+      if (!utils.isUrl(this.options.build.publicPath)) {
+        fs.moveSync(
+          path.resolve(
+            this.options.generate.dir,
+            utils.normalizePublicPath(this.options.build.publicPath),
+          ),
+          path.resolve(
+            "public",
+            utils.normalizePublicPath(this.options.build.publicPath),
+          ),
+          {
+            overwrite: true,
+          },
+        );
+      } else {
+        console.log(
+          `${chalk.green(
+            `[laravel-nuxt]`,
+          )} Looks like you are using a CDN to serve your assets [${
+            this.options.build.publicPath
+          }]`,
+        );
+        console.log(
+          `${chalk.green(
+            `[laravel-nuxt]`,
+          )} You should now publish the contents of ${
+            this.options.generate.dir
+          } there`,
+        );
+      }
     });
   }
 };

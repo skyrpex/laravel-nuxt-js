@@ -26,9 +26,9 @@ module.exports.pipeStdio = (child, name) => {
       .trim()
       .split("\n")
       .forEach(text => {
-    if (text.length > 0) {
-      console.log(`${chalk.gray(`[${name}]`)} ${text}`);
-    }
+        if (text.length > 0) {
+          console.log(`${chalk.gray(`[${name}]`)} ${text}`);
+        }
       });
   };
 
@@ -76,7 +76,7 @@ module.exports.validateConfig = () => {
  *
  * @param {string} url
  */
-const isUrl = url => {
+exports.isUrl = url => {
   return url.indexOf("http") === 0 || url.indexOf("//") === 0;
 };
 
@@ -86,5 +86,5 @@ const isUrl = url => {
  * @param {string} publicPath
  */
 exports.normalizePublicPath = publicPath => {
-  return isUrl(publicPath) ? "" : _.trim(publicPath, "/");
+  return exports.isUrl(publicPath) ? "" : _.trim(publicPath, "/");
 };
