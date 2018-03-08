@@ -21,10 +21,15 @@ module.exports.configPath = configPath;
  */
 module.exports.pipeStdio = (child, name) => {
   const out = data => {
-    const text = data.toString().trim();
+    data
+      .toString()
+      .trim()
+      .split("\n")
+      .forEach(text => {
     if (text.length > 0) {
       console.log(`${chalk.gray(`[${name}]`)} ${text}`);
     }
+      });
   };
 
   child.stdout.on("data", out);
