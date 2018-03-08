@@ -17,5 +17,11 @@ test("should build correctly", t => {
   });
 
   t.true(status === 0, output.toString());
-  t.true(fs.existsSync(path.resolve(baseDir, "public/_nuxt/index.html")));
+  t.true(fs.existsSync(path.resolve(baseDir, "public/_nuxt")));
+  t.true(fs.existsSync(path.resolve(baseDir, "storage/app/nuxt/index.html")));
+  t.true(
+    fs.existsSync(
+      path.resolve(baseDir, "storage/app/nuxt/vue-ssr-client-manifest.json"),
+    ),
+  );
 });
