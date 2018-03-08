@@ -6,15 +6,15 @@ const spawn = require("cross-spawn");
 const { installSelf } = require("./utils");
 
 const baseDir = tmp.dirSync({
-  unsafeCleanup: true,
+    unsafeCleanup: true,
 }).name;
 fs.copySync(path.resolve(__dirname, "stubs/invalid_config"), baseDir);
 installSelf(baseDir);
 
 test("should fail config is not wrapped by laravelNuxt", t => {
-  const { status } = spawn.sync("npm", ["run", "build"], {
-    cwd: baseDir,
-  });
+    const { status } = spawn.sync("npm", ["run", "build"], {
+        cwd: baseDir,
+    });
 
-  t.true(status !== 0);
+    t.true(status !== 0);
 });

@@ -1,4 +1,4 @@
 plugins:
-  - ava
+    - ava
 extends:
-  - plugin:ava/recommended
+    - plugin:ava/recommended

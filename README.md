@@ -33,11 +33,11 @@ Wrap you `nuxt.config.js`'s export with `laravelNuxt`:
 const laravelNuxt = require("laravel-nuxt");
 
 module.exports = laravelNuxt({
-  // Your Nuxt options here...
-  modules: [],
-  plugins: [],
+    // Your Nuxt options here...
+    modules: [],
+    plugins: [],
 
-  // Options such as mode, srcDir and generate.dir are already handled for you.
+    // Options such as mode, srcDir and generate.dir are already handled for you.
 });
 ```
 
@@ -45,14 +45,14 @@ Populate `resources/nuxt/pages/index.vue` inside your project:
 
 ```html
 <template>
-  <h1>Hello {{ name }}!</h1>
+    <h1>Hello {{ name }}!</h1>
 </template>
 
 <script>
 export default {
-  data: () => {
-    return { name: 'world' };
-  },
+    data: () => {
+        return { name: 'world' };
+    },
 };
 </script>
 ```
