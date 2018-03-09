@@ -1,5 +1,5 @@
 const test = require("ava");
-const laravelNuxt = require("../src");
+const laravelNuxt = require("../../src");
 
 test("should concatenate modules", t => {
     const config = laravelNuxt({
