@@ -6,22 +6,22 @@ const utils = require("../src/utils");
 const pkg = require("../package.json");
 
 program
-  .version(pkg.version)
-  .description("Compiles the application for production deployment")
-  .option(
-    "-a, --analyze",
-    "Launch webpack-bundle-analyzer to optimize your bundles",
-  )
-  .parse(process.argv);
+    .version(pkg.version)
+    .description("Compiles the application for production deployment")
+    .option(
+        "-a, --analyze",
+        "Launch webpack-bundle-analyzer to optimize your bundles",
+    )
+    .parse(process.argv);
 
 utils.validateConfig();
 
 const build = spawn.sync(
-  which.sync("nuxt"),
-  ["build", `-c=${utils.configPath}`, "--spa", program.analyze ? "-a" : ""],
-  {
-    stdio: "inherit",
-  },
+    which.sync("nuxt"),
+    ["build", `-c=${utils.configPath}`, "--spa", program.analyze ? "-a" : ""],
+    {
+        stdio: "inherit",
+    },
 );
 
 process.exit(build.status);
