@@ -7,3 +7,10 @@ test("should concatenate modules", t => {
     });
     t.true(config.modules.indexOf("acme_module") !== -1);
 });
+
+test("should respect srcDir", t => {
+    const config = laravelNuxt({
+        srcDir: "acme_dir",
+    });
+    t.true(config.srcDir === "acme_dir");
+});
