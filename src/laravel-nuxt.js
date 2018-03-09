@@ -30,31 +30,39 @@ module.exports = (options = {}) => {
             }),
         // Force some other options. These are mandatory.
         options =>
-            _.merge(options, {
-                mode: "spa",
-                modules: [require.resolve("./module"), "@nuxtjs/axios"],
-                axios: {
-                    proxy: isDev,
+            _.mergeWith(
+                options,
+                {
+                    mode: "spa",
+                    modules: [require.resolve("./module"), "@nuxtjs/axios"],
+                    axios: {
+                        proxy: isDev,
+                    },
+                    proxy: isDev
+                        ? [
+                              [
+                                  // We will proxy every single request to Laravel,
+                                  // except for the URL in the RENDER_PATH variable.
+                                  // This URL will render the SPA's HTML, allowing
+                                  // our Laravel backend to fetch it without further
+                                  // redirections and display our website.
+                                  //
+                                  // This is done because we need Laravel to render
+                                  // the HTML from the backend and attach any
+                                  // generated cookies, such as laravel_session.
+                                  ["**/*", `!${process.env.RENDER_PATH}`],
+                                  {
+                                      target: process.env.LARAVEL_URL,
+                                  },
+                              ],
+                          ]
+                        : null,
                 },
-                proxy: isDev
-                    ? [
-                          [
-                              // We will proxy every single request to Laravel,
-                              // except for the URL in the RENDER_PATH variable.
-                              // This URL will render the SPA's HTML, allowing
-                              // our Laravel backend to fetch it without further
-                              // redirections and display our website.
-                              //
-                              // This is done because we need Laravel to render
-                              // the HTML from the backend and attach any
-                              // generated cookies, such as laravel_session.
-                              ["**/*", `!${process.env.RENDER_PATH}`],
-                              {
-                                  target: process.env.LARAVEL_URL,
-                              },
-                          ],
-                      ]
-                    : null,
-            }),
+                (obj, src) => {
+                    if (_.isArray(obj)) {
+                        return obj.concat(src);
+                    }
+                },
+            ),
     )(options);
 };
