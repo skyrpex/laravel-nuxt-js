@@ -14,3 +14,10 @@ test("should respect srcDir", t => {
     });
     t.true(config.srcDir === "acme_dir");
 });
+
+test("should respect plugins", t => {
+    const config = laravelNuxt({
+        plugins: ["acme_plugin"],
+    });
+    t.deepEqual(config.plugins, ["acme_plugin"]);
+});
