@@ -83,6 +83,7 @@ const laravel = spawn(
             // The Laravel's NuxtController will
             // fetch the SPA's HTML from this URL.
             NUXT_URL: renderUrl,
+            APP_URL: `http://${program.hostname}:${NUXT_PORT}`,
         },
     },
 );
