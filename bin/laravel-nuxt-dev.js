@@ -70,6 +70,7 @@ const laravel = spawn(
         env: {
             ...process.env,
             NUXT_URL: renderUrl,
+            APP_URL: `http://${program.hostname}:${NUXT_PORT}`,
         },
     },
 );
