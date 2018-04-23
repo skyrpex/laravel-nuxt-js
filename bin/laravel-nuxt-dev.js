@@ -75,4 +75,4 @@ const laravel = spawn(
     },
 );
 utils.pipeStdio(laravel, "laravel");
-utils.exitOnClose(nuxt);
+utils.exitOnClose(laravel);
