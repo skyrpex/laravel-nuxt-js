@@ -54,10 +54,9 @@ const nuxt = spawn(
             LARAVEL_URL: `http://${program.hostname}:${LARAVEL_PORT}`,
             RENDER_PATH: renderUrl.pathname,
         },
+        detached: true,
     },
 );
-utils.pipeStdio(nuxt, "nuxt");
-utils.exitOnClose(nuxt);
 
 const laravel = spawn(
     "php",
@@ -73,12 +72,18 @@ const laravel = spawn(
             NUXT_URL: renderUrl,
             APP_URL: `http://${program.hostname}:${NUXT_PORT}`,
         },
+        detached: true,
     },
 );
-utils.pipeStdio(laravel, "laravel");
-utils.exitOnClose(laravel);
 
+utils.pipeStdio(nuxt, "nuxt");
+utils.pipeStdio(laravel, "laravel");
+
+const cleanUp = () => {
+    utils.kill(nuxt);
+    utils.kill(laravel);
+};
+utils.exitOnClose([nuxt, laravel], cleanUp);
 ON_DEATH(() => {
-    nuxt.kill();
-    laravel.kill();
+    cleanUp();
 });

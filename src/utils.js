@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
+const spawn = require("cross-spawn");
 
 const validationSymbol = "__laravel_nuxt__";
 
@@ -17,8 +18,21 @@ module.exports.pipeStdio = (child, name) => {
     );
 };
 
-module.exports.exitOnClose = child => {
-    child.on("close", event => process.exit(event ? event.code : null));
+module.exports.exitOnClose = ([...childs], callback) => {
+    childs.forEach(child =>
+        child.on("exit", () => {
+            callback();
+            process.exit(1);
+        }),
+    );
+};
+
+module.exports.kill = child => {
+    if (process.platform !== "win32") {
+        spawn("sh", ["-c", "kill -INT -" + child.pid]);
+    } else {
+        child.kill("SIGINT");
+    }
 };
 
 module.exports.validationSymbol = validationSymbol;
