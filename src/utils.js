@@ -20,9 +20,9 @@ module.exports.pipeStdio = (child, name) => {
 
 module.exports.exitOnClose = ([...childs], callback) => {
     childs.forEach(child =>
-        child.on("exit", () => {
+        child.on("exit", code => {
             callback();
-            process.exit(1);
+            process.exit(code);
         }),
     );
 };
