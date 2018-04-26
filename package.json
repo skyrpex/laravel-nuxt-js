@@ -1,6 +1,6 @@
 {
     "name": "laravel-nuxt",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "description": "Build a SPA with Laravel and Nuxt",
     "bin": {
         "laravel-nuxt": "./bin/laravel-nuxt.js",
