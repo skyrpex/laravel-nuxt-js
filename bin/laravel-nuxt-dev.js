@@ -67,11 +67,10 @@ const laravel = spawn(
         `--port=${LARAVEL_PORT}`,
     ],
     {
-        env: {
-            ...process.env,
+        env: Object.assign({}, process.env, {
             NUXT_URL: renderUrl,
             APP_URL: `http://${program.hostname}:${NUXT_PORT}`,
-        },
+        }),
         detached: true,
     },
 );
