@@ -1,14 +1,15 @@
 const path = require("path");
 const fs = require("fs-extra");
 
-module.exports = function () {
+module.exports = function() {
     if (this.options.dev) {
         this.extendRoutes((routes, resolve) => {
             const index = routes.find(route => route.path === "/");
-            routes.push({
-                ...index,
-                path: process.env.RENDER_PATH,
-            });
+            routes.push(
+                Object.assign({}, index, {
+                    path: process.env.RENDER_PATH,
+                }),
+            );
         });
         return;
     }
