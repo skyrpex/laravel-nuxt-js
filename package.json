@@ -1,57 +1,59 @@
 {
-    "name": "laravel-nuxt",
-    "version": "1.4.4",
-    "description": "Build a SPA with Laravel and Nuxt",
-    "bin": {
-        "laravel-nuxt": "./bin/laravel-nuxt.js",
-        "laravel-nuxt-dev": "./bin/laravel-nuxt-dev.js",
-        "laravel-nuxt-build": "./bin/laravel-nuxt-build.js"
-    },
-    "main": "./src/index.js",
-    "scripts": {
-        "test": "npm run lint && ava",
-        "watch": "ava --watch",
-        "lint": "eslint ."
-    },
-    "dependencies": {
-        "@nuxtjs/axios": "^5.3.1",
-        "@nuxtjs/proxy": "^1.2.4",
-        "chalk": "^2.4.1",
-        "commander": "^2.15.1",
-        "cross-spawn": "^6.0.5",
-        "death": "^1.1.0",
-        "fs-extra": "^6.0.1",
-        "lodash": "^4.17.10",
-        "npm-which": "^3.0.1",
-        "nuxt": "^1.4.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/skyrpex/laravel-nuxt-js.git"
-    },
-    "keywords": [
-        "nuxt",
-        "vue",
-        "laravel",
-        "spa"
-    ],
-    "author": "Cristian Pallarés <cristian@pallares.io>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/skyrpex/laravel-nuxt-js/issues"
-    },
-    "homepage": "https://github.com/skyrpex/laravel-nuxt-js#readme",
-    "devDependencies": {
-        "ava": "^1.0.0-beta.4",
-        "eslint": "^4.19.1",
-        "eslint-config-skyrpex": "^2.5.0",
-        "eslint-plugin-ava": "^4.5.1",
-        "glob": "^7.1.2",
-        "tmp": "0.0.33"
-    },
-    "ava": {
-        "files": [
-            "test/**/*.spec.js"
-        ]
-    }
+  "name": "laravel-nuxt",
+  "version": "1.4.5",
+  "description": "Build a SPA with Laravel and Nuxt",
+  "bin": {
+    "laravel-nuxt": "./bin/laravel-nuxt.js",
+    "laravel-nuxt-dev": "./bin/laravel-nuxt-dev.js",
+    "laravel-nuxt-build": "./bin/laravel-nuxt-build.js"
+  },
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "npm run lint && ava",
+    "watch": "ava --watch",
+    "lint": "eslint .",
+    "release": "standard-version"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/proxy": "^1.2.4",
+    "chalk": "^2.4.1",
+    "commander": "^2.15.1",
+    "cross-spawn": "^6.0.5",
+    "death": "^1.1.0",
+    "fs-extra": "^6.0.1",
+    "lodash": "^4.17.10",
+    "npm-which": "^3.0.1",
+    "nuxt": "^1.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skyrpex/laravel-nuxt-js.git"
+  },
+  "keywords": [
+    "nuxt",
+    "vue",
+    "laravel",
+    "spa"
+  ],
+  "author": "Cristian Pallarés <cristian@pallares.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skyrpex/laravel-nuxt-js/issues"
+  },
+  "homepage": "https://github.com/skyrpex/laravel-nuxt-js#readme",
+  "devDependencies": {
+    "ava": "^1.0.0-beta.4",
+    "eslint": "^4.19.1",
+    "eslint-config-skyrpex": "^2.5.0",
+    "eslint-plugin-ava": "^4.5.1",
+    "glob": "^7.1.2",
+    "standard-version": "^4.4.0",
+    "tmp": "0.0.33"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.spec.js"
+    ]
+  }
 }
