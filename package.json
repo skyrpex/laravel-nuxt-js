@@ -20,7 +20,7 @@
         "commander": "^2.15.0",
         "cross-spawn": "^6.0.5",
         "death": "^1.1.0",
-        "fs-extra": "^5.0.0",
+        "fs-extra": "^6.0.1",
         "lodash": "^4.17.5",
         "npm-which": "^3.0.1",
         "nuxt": "^1.4.0"
