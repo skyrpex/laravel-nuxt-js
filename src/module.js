@@ -7,6 +7,7 @@ module.exports = function() {
             const index = routes.find(route => route.path === "/");
             routes.push(
                 Object.assign({}, index, {
+                    name: "__laravel_nuxt__",
                     path: process.env.RENDER_PATH,
                 }),
             );
