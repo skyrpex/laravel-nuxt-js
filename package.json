@@ -8,6 +8,10 @@
     "laravel-nuxt-build": "./bin/laravel-nuxt-build.js"
   },
   "main": "./src/index.js",
+  "files": [
+      "bin",
+      "src"
+  ],
   "scripts": {
     "test": "npm run lint && ava",
     "watch": "ava --watch",
