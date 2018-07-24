@@ -4,7 +4,12 @@ const fs = require("fs-extra");
 module.exports = function() {
     if (this.options.dev) {
         this.extendRoutes((routes, resolve) => {
-            const index = routes.find(route => route.path === "/");
+            const index = routes.find(
+                // Try our best to find the root route.
+                // First, check if there's a route at /.
+                // Then, check i18n routes.
+                route => route.path === "/" || route.name.match(/^index-\w+$/),
+            );
             routes.push(
                 Object.assign({}, index, {
                     name: "__laravel_nuxt__",
