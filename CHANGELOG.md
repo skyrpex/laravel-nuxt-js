@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.6"></a>
+## [1.4.6](https://github.com/skyrpex/laravel-nuxt-js/compare/v1.4.5...v1.4.6) (2018-07-24)
+
+
+### Bug Fixes
+
+* find root route when i18n routes are enabled ([025bf96](https://github.com/skyrpex/laravel-nuxt-js/commit/025bf96))
+
+
+
 <a name="1.4.5"></a>
 ## [1.4.5](https://github.com/skyrpex/laravel-nuxt-js/compare/v1.4.4...v1.4.5) (2018-05-28)
 
