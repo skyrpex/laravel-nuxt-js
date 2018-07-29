@@ -8,7 +8,7 @@ module.exports = function() {
                 // Try our best to find the root route.
                 // First, check if there's a route at /.
                 // Then, check i18n routes.
-                route => route.path === "/" || route.name.match(/^index-\w+$/),
+                route => route.path === "/" || (route.name && route.name.match(/^index-\w+$/)),
             );
             routes.push(
                 Object.assign({}, index, {
