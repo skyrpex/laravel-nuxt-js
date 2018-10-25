@@ -28,6 +28,7 @@ program
         "URL path used to render the SPA",
         "/__laravel_nuxt__",
     )
+    .option("--laravel-path [path]", "Dir path laravel", process.cwd())
     .option("--no-color", "Disable colored output")
     .parse(process.argv);
 
@@ -78,6 +79,7 @@ const laravel = spawn(
         program.color ? "--ansi" : null,
     ]),
     {
+        cwd: program.laravelPath,
         env: {
             ...process.env,
             // The Laravel's NuxtController will
