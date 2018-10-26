@@ -27,6 +27,7 @@ program
         "URL path used to render the SPA",
         "/__laravel_nuxt__",
     )
+    .option("--laravel-path [path]", "Path to laravel directory", process.cwd())
     .parse(process.argv);
 
 const NUXT_PORT = parseInt(program.port);
@@ -67,6 +68,7 @@ const laravel = spawn(
         `--port=${LARAVEL_PORT}`,
     ],
     {
+        cwd: program.laravelPath,
         env: Object.assign({}, process.env, {
             NUXT_URL: renderUrl,
             APP_URL: `http://${program.hostname}:${NUXT_PORT}`,
