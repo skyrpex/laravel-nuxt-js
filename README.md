@@ -73,7 +73,7 @@ Go to http://localhost:8000.
 laravel-nuxt dev
 ```
 
-Starts both Nuxt and Laravel artisan servers in development mode (hot-code reloading, error reporting, etc).
+Starts both Nuxt and Laravel artisan servers in development mode (hot-module reloading, error reporting, etc).
 
 ### Production
 
