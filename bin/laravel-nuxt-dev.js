@@ -40,24 +40,27 @@ const renderUrl = new URL(
 
 utils.validateConfig();
 
-const nuxt = spawn(
+let args = [
     which.sync("nuxt"),
-    [
-        "dev",
-        `-c=${utils.configPath}`,
-        "--spa",
-        `--port=${NUXT_PORT}`,
-        `--hostname=${program.hostname}`,
-    ],
-    {
-        env: {
-            ...process.env,
-            LARAVEL_URL: `http://${program.hostname}:${LARAVEL_PORT}`,
-            RENDER_PATH: renderUrl.pathname,
-        },
-        detached: true,
+    "dev",
+    `-c=${utils.configPath}`,
+    "--spa",
+    `--port=${NUXT_PORT}`,
+    `--hostname=${program.hostname}`,
+];
+
+if (process.env.NODE_OPTS) {
+    args.unshift(process.env.NODE_OPTS);
+}
+
+const nuxt = spawn(which.sync("node"), args, {
+    env: {
+        ...process.env,
+        LARAVEL_URL: `http://${program.hostname}:${LARAVEL_PORT}`,
+        RENDER_PATH: renderUrl.pathname,
     },
-);
+    detached: true,
+});
 
 const laravel = spawn(
     "php",
