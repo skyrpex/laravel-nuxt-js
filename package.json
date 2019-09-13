@@ -28,7 +28,7 @@
     "fs-extra": "^6.0.1",
     "lodash": "^4.17.10",
     "npm-which": "^3.0.1",
-    "nuxt": "^1.4.0"
+    "nuxt": "^2.9.2"
   },
   "repository": {
     "type": "git",

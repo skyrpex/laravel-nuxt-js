@@ -13,14 +13,12 @@ module.exports.installSelf = cwd => {
     );
 
     const nodeModulesDir = path.resolve(__dirname, "../../node_modules");
-    glob
-        .sync("*", {
-            cwd: nodeModulesDir,
-        })
-        .forEach(packageName =>
-            fs.symlinkSync(
-                path.resolve(nodeModulesDir, packageName),
-                path.resolve(cwd, "node_modules", packageName),
-            ),
-        );
+    glob.sync("*", {
+        cwd: nodeModulesDir,
+    }).forEach(packageName =>
+        fs.symlinkSync(
+            path.resolve(nodeModulesDir, packageName),
+            path.resolve(cwd, "node_modules", packageName),
+        ),
+    );
 };
