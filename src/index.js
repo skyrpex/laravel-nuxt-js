@@ -1,1 +1,1 @@
-module.exports = require("./laravel-nuxt");
+module.exports = require('./laravel-nuxt')

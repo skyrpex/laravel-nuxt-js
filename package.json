@@ -22,10 +22,10 @@
     "@nuxtjs/axios": "^5.3.1",
     "@nuxtjs/proxy": "^1.2.4",
     "chalk": "^2.4.1",
-    "commander": "^2.15.1",
-    "cross-spawn": "^6.0.5",
+    "commander": "^3.0.1",
+    "cross-spawn": "^7.0.0",
     "death": "^1.1.0",
-    "fs-extra": "^6.0.1",
+    "fs-extra": "^8.1.0",
     "lodash": "^4.17.10",
     "npm-which": "^3.0.1",
     "nuxt": "^2.9.2"
@@ -47,13 +47,17 @@
   },
   "homepage": "https://github.com/skyrpex/laravel-nuxt-js#readme",
   "devDependencies": {
-    "ava": "^1.0.0-beta.4",
-    "eslint": "^4.19.1",
-    "eslint-config-skyrpex": "^2.5.0",
-    "eslint-plugin-ava": "^4.5.1",
+    "ava": "^2.3.0",
+    "eslint": "^6.3.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-ava": "^8.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "glob": "^7.1.2",
-    "standard-version": "^4.4.0",
-    "tmp": "0.0.33"
+    "standard-version": "^7.0.0",
+    "tmp": "0.1.0"
   },
   "ava": {
     "files": [
