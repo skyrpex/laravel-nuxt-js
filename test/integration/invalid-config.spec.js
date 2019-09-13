@@ -12,7 +12,7 @@ fs.copySync(path.resolve(__dirname, 'stubs/invalid_config'), baseDir)
 installSelf(baseDir)
 
 test('should fail config is not wrapped by laravelNuxt', t => {
-  const { status } = spawn.sync('npm', ['run', 'build'], {
+  const { status } = spawn.sync('yarn', ['run', 'build'], {
     cwd: baseDir
   })
 

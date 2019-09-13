@@ -12,7 +12,7 @@ fs.copySync(path.resolve(__dirname, 'stubs/builds_correctly'), baseDir)
 installSelf(baseDir)
 
 test('should build correctly', t => {
-  const { status, output } = spawn.sync('npm', ['run', 'build'], {
+  const { status, output } = spawn.sync('yarn', ['run', 'build'], {
     cwd: baseDir
   })
 
