@@ -4,6 +4,8 @@
 
 This package allows you to build a SPA with [Laravel](https://laravel.com/) and [Nuxt](https://nuxtjs.org/).
 
+> I'm currently very busy so don't expect updates anytime soon. Please, check out [m2sd/nuxt-laravel](https://github.com/m2sd/nuxt-laravel) which is based on this repository but it's more active.
+
 ## Installation
 
 ```bash
