@@ -1,3 +1,9 @@
+# Warning: this project as been deprecated
+
+`laravel-nuxt` was created to offer some sugar when working locally with Laravel+Nuxt, solving some cookie problems in the process. Today, it isn't necessary anymore.
+
+We recommend using [Laravel Sanctum](https://laravel.com/docs/8.x/sanctum), which plays nicely with SPAs (see [Sanctum's SPA Authentication section](https://laravel.com/docs/8.x/sanctum#spa-authentication)). If you can't migrate, just keep using `laravel-nuxt`.
+
 # Laravel Nuxt JS
 
 [![TravisCI Build status](https://travis-ci.org/skyrpex/laravel-nuxt-js.svg?branch=develop)](https://travis-ci.org/skyrpex/laravel-nuxt-js)
