@@ -1,4 +1,4 @@
-# Warning: this project as been deprecated
+# Warning: this project has been deprecated
 
 `laravel-nuxt` was created to offer some sugar when working locally with Laravel+Nuxt, solving some cookie problems in the process. Today, it isn't necessary anymore.
 
